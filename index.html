@@ -6,11 +6,12 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, shrink-to-fit=no, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    
+    <meta name="author" content="Lexionbear: https://github.com/lexionbear">
 
     <title>Machine Learning Models</title>
-
+	<meta name="description" content="Collections of state-of-art tensorflow machine learning algorithms and models">
+	
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -27,7 +28,6 @@
 </head>
 
 <body>
-
     <div id="wrapper">
 
         <!-- Sidebar -->
@@ -50,101 +50,112 @@
 
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div id="googlenet" class="row">
-                    <div class="col-lg-12">
-                        <h1>GoogleNet Image Classifier</h1>
-                        <p class="lead">Publication: <a href="http://arxiv.org/abs/1409.4842">Going Deeper with Convolution</a></p>
-						<p>GoogleNet is a cheap and relatively accurate 1000 class image classifier first published in 2014</p>
-						<div class="col-lg-8">
-							<table class="table table-bordered table-hover table-responsive"> 
-								<tbody> 
-									<tr> 
-										<th scope="row" rowspan="2">Accuracy</th>
-										<td>ILSVRC 2014 dataset: Accuracy (Top-5) <b>93.33%</b></td>
-									</tr>
-									<tr>
-										<td>ILSVRC 2012 dataset: Accuracy (Top-5) <b>89.06%</b></td>
-									</tr>
-									<tr> 
-										<th scope="row">Model Size</th>
-										<td>27Mb in npy format</td>
-									</tr> 
-									<tr> 
-										<th scope="row">Architecture</th>
-										<td>
-											<p>9 identical blocks of parallel convolutional neural network layers with downsampling, shown below<p>
-											<img src="img/googlenet/googlenet_block.png" class="img-responsive" alt="GoogleNet basic block">
-										</td>
-									</tr>
-									<tr> 
-										<th scope="row">Advantage</th>
-										<td>
-											<ul>
-												<li>Simplicity: the network consists of 9 identical and relatively simple blocks</li>
-												<li>Parallelism: the network layers within each block are structure in 4 parallel pathway</li>
-												<li>Computation and memory efficiency: because of the parallel network implementation and the dimension reduction layers in each block, the model size is contained within 27Mb npy file, and its execution time beats VGG or ResNet on commodity hardware.</li>
-											</ul>
-										</td>
-									</tr>
-									<tr> 
-										<th scope="row">Disadvantage</th>
-										<td>
-											<ul>
-												<li>Lower accuracy: the high efficiency comes at a small cost of the model accuracy on ILSVRC 2012</li>
-											</ul>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+            <div class="container-fluid row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div id="googlenet" class="row">
+						<div class="col-lg-12 row">
+							<h1>GoogleNet Image Classifier</h1>
+							<p class="lead">Publication: <a href="http://arxiv.org/abs/1409.4842">Going Deeper with Convolution</a></p>
+							<p>GoogleNet is a cheap and relatively accurate 1000 class image classifier first published in 2014</p>
+							<div class="col-lg-8">
+								<table class="table table-bordered table-hover table-responsive"> 
+									<tbody> 
+										<tr> 
+											<th scope="row" rowspan="2">Accuracy</th>
+											<td>ILSVRC 2014 dataset: Accuracy (Top-5) <b>93.33%</b></td>
+										</tr>
+										<tr>
+											<td>ILSVRC 2012 dataset: Accuracy (Top-5) <b>89.06%</b></td>
+										</tr>
+										<tr> 
+											<th scope="row">Model Size</th>
+											<td>27Mb in npy format</td>
+										</tr> 
+										<tr> 
+											<th scope="row">Architecture</th>
+											<td>
+												<p>9 identical blocks of parallel convolutional neural network layers with downsampling, shown below</p>
+												<img src="img/googlenet/googlenet_block.png" class="img-responsive" alt="GoogleNet basic block"/>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Advantage</th>
+											<td>
+												<ul>
+													<li>Simplicity: the network consists of 9 identical and relatively simple blocks</li>
+													<li>Parallelism: the network layers within each block are structure in 4 parallel pathway</li>
+													<li>Computation and memory efficiency: because of the parallel network implementation and the dimension reduction layers in each block, the model size is contained within 27Mb npy file, and its execution time beats VGG or ResNet on commodity hardware.</li>
+												</ul>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Disadvantage</th>
+											<td>
+												<ul>
+													<li>Lower accuracy: the high efficiency comes at a small cost of the model accuracy on ILSVRC 2012</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-4"></div>
 						</div>
-                    </div>
-                </div>
-				<div id="resnet" class="row">
-                    <div class="col-lg-12">
-                        <h1>ResNet50 Image Classifier</h1>
-                        <p class="lead">Publication: <a href="http://arxiv.org/abs/1512.03385">Deep Residual Learning for Image Recognition</a></p>
-						<p>ResNet50 is a highly accurate model published by Microsoft research. It's gain in accuracy comes at a cost of computational expenses. Both its model memory cost and execution time exceed those of GoogleNet.</p>
-						<div class="col-lg-8">
-							<table class="table table-bordered table-hover table-responsive"> 
-								<tbody> 
-									<tr> 
-										<th scope="row">Accuracy</th>
-										<td>ILSVRC 2012 dataset: Accuracy (Top-5) <b>92.02%</b></td>
-									<tr> 
-										<th scope="row">Model Size</th>
-										<td>100Mb in npy format</td>
-									</tr> 
-									<tr> 
-										<th scope="row">Architecture</th>
-										<td>
-											<p>50 layers of similar blocks with "bypass connections" shown as the <i>x identity</i> below<p>
-											<img src="img/resnet/resnet_block.png" class="img-responsive" alt="GoogleNet basic block">
-											<p>Shortcut path serves as a model simplifier and provides the benefit of simple models in a complex network. If shortcut path is dominant, the layers between this shortcut are essentially ignored, reducing the complexity of the model in effect.</p>
-										</td>
-									</tr>
-									<tr> 
-										<th scope="row">Advantage</th>
-										<td>
-											<ul>
-												<li>High accuracy: ResNet achieves one of the best performance accuracy, beating VGG and GoogleNet in ILSVRC 2012 testset</li>
-											</ul>
-										</td>
-									</tr>
-									<tr> 
-										<th scope="row">Disadvantage</th>
-										<td>
-											<ul>
-												<li>Relative complex model: although simple in concept, ResNet implementation is highly complicated due to the extensive use of shortcut path that skips layers and pooling, normalizations operations. This increases debugging and innovation cost.</li>
-											</ul>
-										</td>
-									</tr>
-								</tbody>
-							</table>
+						<p>Sample codes & pre-trained model in tensorflow comming up...</p>
+						<hr/>
+					</div>
+					<div id="resnet" class="row">
+						<div class="col-lg-12 row">
+							<h1>ResNet50 Image Classifier</h1>
+							<p class="lead">Publication: <a href="http://arxiv.org/abs/1512.03385">Deep Residual Learning for Image Recognition</a></p>
+							<p>ResNet50 is a highly accurate model published by Microsoft research. It's gain in accuracy comes at a cost of computational expenses. Both its model memory cost and execution time exceed those of GoogleNet.</p>
+							<div class="col-lg-8">
+								<table class="table table-bordered table-hover table-responsive"> 
+									<tbody> 
+										<tr> 
+											<th scope="row">Accuracy</th>
+											<td>ILSVRC 2012 dataset: Accuracy (Top-5) <b>92.02%</b></td>
+										</tr> 
+										<tr> 
+											<th scope="row">Model Size</th>
+											<td>100Mb in npy format</td>
+										</tr> 
+										<tr> 
+											<th scope="row">Architecture</th>
+											<td>
+												<p>50 layers of similar blocks with "bypass connections" shown as the <i>x identity</i> below</p>
+												<img src="img/resnet/resnet_block.png" class="img-responsive" alt="GoogleNet basic block"/>
+												<p>Shortcut path serves as a model simplifier and provides the benefit of simple models in a complex network. If shortcut path is dominant, the layers between this shortcut are essentially ignored, reducing the complexity of the model in effect.</p>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Advantage</th>
+											<td>
+												<ul>
+													<li>High accuracy: ResNet achieves one of the best performance accuracy, beating VGG and GoogleNet in ILSVRC 2012 testset</li>
+												</ul>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Disadvantage</th>
+											<td>
+												<ul>
+													<li>Relative complex model: although simple in concept, ResNet implementation is highly complicated due to the extensive use of shortcut path that skips layers and pooling, normalizations operations. This increases debugging and innovation cost.</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-4"></div>
 						</div>
-                    </div>
-                </div>	
-            </div>
+						<p>Sample codes & pre-trained model in tensorflow comming up...</p>
+						<hr/>
+					</div>	
+				</div>
+				<div class="col-md-1"></div>
+			</div>
         </div>
         <!-- /#page-content-wrapper -->
 
@@ -161,7 +172,7 @@
     <script>
 
     </script>
-
+	
 </body>
 
 </html>
