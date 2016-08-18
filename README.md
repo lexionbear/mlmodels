@@ -10,6 +10,4 @@ We go extra-miles to collect model files and sample codes, and making them avail
 
 ## Contact
 
-If you find inaccurate model descriptions or would like to add new ones, contact me at:
-
-* 6fenxls@gmail.com
+If you find inaccurate model descriptions or would like to add new ones, feel free to leave a note at Github
