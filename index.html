@@ -47,6 +47,9 @@
 				<li>
                     <a href="#vgg16">VGG16 Image Classifier</a>
                 </li>
+				<li>
+                    <a href="#textrank">TextRank - Text Summarization</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -221,6 +224,58 @@
 						</div>
 						<hr/>
 					</div>	
+					<div id="textrank" class="row">
+						<div class="col-lg-12 row">
+							<h1>TextRank - Article Summarization & Keyword Extraction</h1>
+							<p class="lead">Publication: <a href="http://web.eecs.umich.edu/~mihalcea/papers/mihalcea.emnlp04.pdf">TextRank: Bringing Order into Texts</a></p>
+							<p>TextRank applied <a href="https://en.wikipedia.org/wiki/PageRank">PageRank</a>-style graph ranking algorithm on natural language articles. Through tokenization of individual words as vertex and using co-occurance as unweighted connection, text rank graph can produce a list of keywords from a passage.</p>
+							<p>The author also achieved good performance in article summarization if the algorithm uses whole sentence as vertex and use "sentence similarity" as weighted connection.</p>
+							<div class="col-lg-8">
+								<table class="table table-bordered table-hover table-responsive"> 
+									<tbody> 
+										<tr> 
+											<th scope="row">Accuracy</th>
+											<td>TextRank outperforms many previous approaches in this area (e.g. Hulth, 2003)</td>
+										</tr> 
+										<tr> 
+											<th scope="row">Architecture</th>
+											<td>
+												<ul>
+													<li>The algorithm computes the exact same way as PageRank/HITS rank.</li>
+												</ul>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Advantage</th>
+											<td>
+												<ul>
+													<li>It is a text processing implementation of the already well known “pagerank” and “HITS” algorithms.</li>
+													<li>The model is language independent, with little external knowledge required.</li>
+												</ul>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Disadvantage</th>
+											<td>
+												<ul>
+													<li>It can only ensure high quality for small sets of documents where text graph can be accurately constructed using proposed similarity measures.</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-4"></div>
+						</div>
+						<div class="col-lg-12 row">
+							<p>JS Sample Code: <a href="https://github.com/dpressel/textrank-js">JS TextRank</a></p>
+							<p>Python Sample Code: <a href="https://github.com/davidadamojr/TextRank">Python TextRank</a></p>
+							<p>And many more on Github</p>
+							
+						</div>
+						<hr/>
+					</div>	
+				
 				</div>
 				<div class="col-md-1"></div>
 			</div>
@@ -232,7 +287,7 @@
 				<footer>
 					<div class="row">
 						<div class="col-sm-6 col-lg-12">
-							<p>Want to report inaccurate data or contribute to the model documentation on the site? Find us on <a href="https://github.com/lexionbear/mlmodels/tree/master">Github</a></p>
+							<p>Want to report inaccurate description or contribute to the model documentation on the site? Find us on <a href="https://github.com/lexionbear/mlmodels/tree/master">Github</a></p>
 							<!--<p>Copyright &copy; lexionbear.github.io 2016</p>-->
 						</div>
 					</div>
