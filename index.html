@@ -53,6 +53,9 @@
 				<li>
                     <a href="#textrank">TextRank - Text Summarization</a>
                 </li>
+				<li>
+                    <a href="#syntaxnet">SyntaxNet - Neural Models of Syntax</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -324,7 +327,34 @@
 							
 						</div>
 						<hr/>
+						
 					</div>	
+					<div id="syntaxnet" class="row">
+						<div class="col-lg-12 row">
+							<h1>SyntaxNet: Neural Models of Syntax</h1>
+							<p class="lead">Google's Open-Source Model & Code: <a href="https://github.com/tensorflow/models/tree/master/syntaxnet">SyntaxNet: Neural Models of Syntax</a></p>
+							<p>Part of speech (POS) tagging aims at parsing the dependency structure of a sentence and understand which word is root, action and objectives. SyntaxNet is a Google open-sourced neural network solution achieving state-of-art accuracy in POS challenges.</p>
+							<img src="img/syntaxnet/ff_nn_schematic.png" class="img-responsive" alt="DependencyParsing"/>
+							<p>As illustrated in the above picture, the model concatenates feature embeddings, run through hidden layer, and output the softmax probability for the next optimal action to take on the sequence graph.</p>
+							<p>The mathematic approach in <a href="https://arxiv.org/abs/1603.06042">Globally Normalized Transition-Based Neural Networks</a> is critical in training a high accuracy syntax net.</p>
+							<p>In summary, the paper proves</p>
+							<p>
+								<ul>
+									<li>Computing global normalization loss function is strictly better (more expressive) than local normalization loss function. 
+										<ul>
+											<li>Global normalization: compute how likely is this sequence (of tagging), out of all possible sequences, the golden sequence?</li>
+											<li>Local normalization: compute how likely is this next action (tagging), out of all possible next actions, leads the current sequence to the golden sequence?</li>
+										</ul>
+									</li>
+									<li>
+										An efficient way to compute the global normalization function. Specifically, the computation can be optimized through beam searching only the golden path and early termination - perform backpropregation as soon as the system prediction deviates from the golden path, and stops there.
+									</li>
+								</ul>
+							</p>
+						</div>
+						<hr/>
+					</div>	
+					
 				</div>
 				<div class="col-md-1"></div>
 			</div>
