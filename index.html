@@ -56,6 +56,9 @@
 				<li>
                     <a href="#syntaxnet">SyntaxNet - POS Tagging</a>
                 </li>
+				<li>
+                    <a href="#gan">GAN - Generative Model</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -354,7 +357,43 @@
 						</div>
 						<hr/>
 					</div>	
-					
+					<div id="gan" class="row">
+						<div class="col-lg-12 row">
+							<h1>GAN: Generative Adversarial Network</h1>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1406.2661">Generative Adversarial Networks</a></p>
+							<p>Generative models are useful for building AI that can self-compose images, music and other works. Building a generative model is challenging because it is hard to define what is the best output (training target), and find a working cost function.</p>
+							<p>GAN introduces a new paradigm of training a generative model, in the following way:</p>
+							<p>
+								<ul>
+									<li>
+									    Build a generative model neural network 
+									</li>
+									<li>
+										Build a discriminator network that tries to tell if its input (e.g. an image) is artificially generated or real.
+									</li>
+								</ul>
+							</p>
+							<p>In the paper, the author used fully connected layers for both networks and demonstrated good performance in generating realistic looking images.</p>
+							<p>The second network can be trained via backpropagation because we know for each image if it is generated or not. During the training of first netwrok, or generative network, we can lock the second network and use backpropagation to tell the first network to go into the direction of making the second network say it is more real than generated. Conceptually, the second network is providing advice for the first network on how to make its output more realistic and thus named as Adversarial network.</p>
+							<p>The folloing image demonstrated this process visually</p>
+							<img src="img/gan/gan.png" class="img-responsive" alt="GAN"/>
+							<p>
+							<ul>
+									<li>
+									    Back dot: real output
+									</li>
+									<li>
+										Grean line: generative network output
+									</li>
+									<li>
+										Blue line: discriminator network output (0.5 means it believe the work has equal probability to be real or generated)
+									</li>
+								</ul>
+							</p>
+							<p>Although as Karpathy noted on his <a href="http://cs.stanford.edu/people/karpathy/gan/">experiment</a>, "things are not quite as nice in practice".</p>
+						</div>
+						<hr/>
+					</div>
 				</div>
 				<div class="col-md-1"></div>
 			</div>
