@@ -59,6 +59,9 @@
 				<li>
                     <a href="#gan">GAN - Generative Model</a>
                 </li>
+				<li>
+                    <a href="#vae">Variational Autoencoder</a>
+                </li>
             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -375,7 +378,7 @@
 							</p>
 							<p>In the paper, the author used fully connected layers for both networks and demonstrated good performance in generating realistic looking images.</p>
 							<p>The second network can be trained via backpropagation because we know for each image if it is generated or not. During the training of first netwrok, or generative network, we can lock the second network and use backpropagation to tell the first network to go into the direction of making the second network say it is more real than generated. Conceptually, the second network is providing advice for the first network on how to make its output more realistic and thus named as Adversarial network.</p>
-							<p>The folloing image demonstrated this process visually</p>
+							<p>The following image demonstrated this process visually</p>
 							<img src="img/gan/gan.png" class="img-responsive" alt="GAN"/>
 							<p>
 							<ul>
@@ -391,6 +394,36 @@
 								</ul>
 							</p>
 							<p>Although as Karpathy noted on his <a href="http://cs.stanford.edu/people/karpathy/gan/">experiment</a>, "things are not quite as nice in practice".</p>
+						</div>
+						<hr/>
+					</div>
+					<div id="vae" class="row">
+						<div class="col-lg-12 row">
+							<h1>Variational Autoencoder</h1>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1312.6114">Original VAE paper (2013)</a></p>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1606.05579">Disentangled VAE's (DeepMind 2016)</a></p>
+							<p class="lead">Video: <a href="https://www.youtube.com/watch?v=9zKuYvjFFS8">Variational Autoencoders Walk-through</a></p>
+							<p>Variational autoencoder differs from a traditional neural network autoencoder by merging statistical modeling techniques with deep learning</p>
+							<p>Specifically, it is special in that:</p>
+							<p>
+								<ul>
+									<li>
+									    It tries to build encoded latent vector as a Gaussian probability distribution of mean and variance (different mean and variance for each encoding vector dimension).
+									</li>
+									<li>
+										The latent vector forms a continuous space, tuning latent vector continuously forms continuous output representations. With disentangled VAE, the latent vector can even minimizes their correlations, and become more orthogonal to one another. This is perhaps the <b>best property</b> a traditional autoencoder lacks.
+									</li>
+									<li>
+										During reconstruction stage, a stochastic operation (random sample from Gaussian) is performed to first generate the latent vector. This sample can be considered as a constant in the backpropagation stage
+									</li>
+									<li>
+										The cost function include similarity towards the target (same as traditional autoencoder) and a KL divergence that pushes the latent vector converge to Gausian distribution.
+									</li>
+								</ul>
+							</p>
+							<p>The following image demonstrated VAE network</p>
+							<img src="img/vae/vae.jpg" class="img-responsive" alt="GAN"/>
+							<p>Kevin provides <a href="http://kvfrans.com/variational-autoencoders-explained/">a more detailed explanation with codes</a>, coming from both deep learning and statistician perspectives.
 						</div>
 						<hr/>
 					</div>
