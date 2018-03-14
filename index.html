@@ -38,6 +38,18 @@
                         Models
                     </a>
                 </li>
+				<li>
+                    <a href="#vae">Variational Autoencoder</a>
+                </li>
+				<li>
+                    <a href="#gan">GAN - Generative Model</a>
+                </li>
+				<li>
+                    <a href="#syntaxnet">SyntaxNet - POS Tagging</a>
+                </li>
+				<li>
+                    <a href="#imagetalk">Image Captioning</a>
+                </li>
                 <li>
                     <a href="#googlenet">GoogleNet Image Classifier</a>
                 </li>
@@ -48,19 +60,7 @@
                     <a href="#vgg16">VGG16 Image Classifier</a>
                 </li>
 				<li>
-                    <a href="#imagetalk">Image Captioning</a>
-                </li>
-				<li>
                     <a href="#textrank">TextRank - Text Summarization</a>
-                </li>
-				<li>
-                    <a href="#syntaxnet">SyntaxNet - POS Tagging</a>
-                </li>
-				<li>
-                    <a href="#gan">GAN - Generative Model</a>
-                </li>
-				<li>
-                    <a href="#vae">Variational Autoencoder</a>
                 </li>
             </ul>
         </div>
@@ -71,6 +71,146 @@
             <div class="container-fluid row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
+				<div id="vae" class="row">
+						<div class="col-lg-12 row">
+							<h1>Variational Autoencoder</h1>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1312.6114">Original VAE paper (2013)</a></p>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1606.05579">Disentangled VAE (DeepMind 2016)</a></p>
+							<p class="lead">Video: <a href="https://www.youtube.com/watch?v=9zKuYvjFFS8">Variational Autoencoders Walk-through</a></p>
+							<p>Variational autoencoder differs from a traditional neural network autoencoder by merging statistical modeling techniques with deep learning</p>
+							<p>Specifically, it is special in that:</p>
+							<p>
+								<ul>
+									<li>
+									    It tries to build encoded latent vector as a Gaussian probability distribution of mean and variance (different mean and variance for each encoding vector dimension).
+									</li>
+									<li>
+										The latent vector forms a continuous space, tuning latent vector continuously forms continuous output representations. With disentangled VAE, the latent vector can even minimizes their correlations, and become more orthogonal to one another. This is perhaps the <b>best property</b> a traditional autoencoder lacks.
+									</li>
+									<li>
+										During reconstruction stage, a stochastic operation (random sample from Gaussian) is performed to first generate the latent vector. This sample can be considered as a constant in the backpropagation stage
+									</li>
+									<li>
+										The cost function include similarity towards the target (same as traditional autoencoder) and a KL divergence that pushes the latent vector converge to Gausian distribution.
+									</li>
+								</ul>
+							</p>
+							<p>The following image demonstrated VAE network</p>
+							<img src="img/vae/vae.jpg" class="img-responsive" alt="GAN"/>
+							<p>Kevin provides <a href="http://kvfrans.com/variational-autoencoders-explained/">a more detailed explanation with codes</a>, coming from both deep learning and statistician perspectives.
+						</div>
+						<hr/>
+					</div>
+				    <div id="gan" class="row">
+						<div class="col-lg-12 row">
+							<h1>GAN: Generative Adversarial Network</h1>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1406.2661">Generative Adversarial Networks</a></p>
+							<p>Generative models are useful for building AI that can self-compose images, music and other works. Building a generative model is challenging because it is hard to define what is the best output (training target), and find a working cost function.</p>
+							<p>GAN introduces a new paradigm of training a generative model, in the following way:</p>
+							<p>
+								<ul>
+									<li>
+									    Build a generative model neural network 
+									</li>
+									<li>
+										Build a discriminator network that tries to tell if its input (e.g. an image) is artificially generated or real.
+									</li>
+								</ul>
+							</p>
+							<p>In the paper, the author used fully connected layers for both networks and demonstrated good performance in generating realistic looking images.</p>
+							<p>The second network can be trained via backpropagation because we know for each image if it is generated or not. During the training of first netwrok, or generative network, we can lock the second network and use backpropagation to tell the first network to go into the direction of making the second network say it is more real than generated. Conceptually, the second network is providing advice for the first network on how to make its output more realistic and thus named as Adversarial network.</p>
+							<p>The following image demonstrated this process visually</p>
+							<img src="img/gan/gan.png" class="img-responsive" alt="GAN"/>
+							<p>
+							<ul>
+									<li>
+									    Back dot: real output
+									</li>
+									<li>
+										Grean line: generative network output
+									</li>
+									<li>
+										Blue line: discriminator network output (0.5 means it believe the work has equal probability to be real or generated)
+									</li>
+								</ul>
+							</p>
+							<p>Although as Karpathy noted on his <a href="http://cs.stanford.edu/people/karpathy/gan/">experiment</a>, "things are not quite as nice in practice".</p>
+						</div>
+						<hr/>
+					</div>
+					
+					<div id="syntaxnet" class="row">
+						<div class="col-lg-12 row">
+							<h1>SyntaxNet: Neural Models of Syntax</h1>
+							<p class="lead">Google's Open-Source Model & Code: <a href="https://github.com/tensorflow/models/tree/master/research/syntaxnet">SyntaxNet: Neural Models of Syntax</a></p>
+							<p>Part of speech (POS) tagging aims at parsing the dependency structure of a sentence to understand which word is root, action and objectives. SyntaxNet is a Google open-sourced neural network solution achieving state-of-art accuracy in POS challenges.</p>
+							<img src="img/syntaxnet/ff_nn_schematic.png" class="img-responsive" alt="DependencyParsing"/>
+							<p>As illustrated in the above picture, the model concatenates feature embeddings, run through hidden layer, and output the softmax probability for the next optimal action to take on the sequence graph.</p>
+							<p>The mathematics in <a href="https://arxiv.org/abs/1603.06042">Globally Normalized Transition-Based Neural Networks</a> is critical in training a high accuracy syntax net.</p>
+							<p>In summary, the paper proves</p>
+							<p>
+								<ul>
+									<li>Computing global normalization loss function is strictly better (more expressive) than local normalization loss function. 
+										<ul>
+											<li>Global normalization: how likely is this sequence (of tagging), out of all possible sequences, the golden sequence?</li>
+											<li>Local normalization: how likely is this next action (tagging), out of all possible next actions, leads the current sequence to the golden sequence?</li>
+										</ul>
+									</li>
+									<li>
+										An efficient way to compute the global normalization function. Specifically, the computation can be optimized through beam searching only the golden path and early termination - perform backpropregation as soon as the system prediction deviates from the golden path, and stops there.
+									</li>
+								</ul>
+							</p>
+						</div>
+						<hr/>
+					</div>	
+					<div id="imagetalk" class="row">
+						<div class="col-lg-12 row">
+							<h1>Image Captioning: Show, (Attend) and Tell</h1>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1411.4555">Show and Tell: A Neural Image Caption Generator</a></p>
+							<p class="lead">Publication: <a href="https://arxiv.org/abs/1502.03044">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a></p>
+							<p>Google's original "Show and Tell" network builds a LSTM recurrent network on top of GoogleNet Image classifier to generate captions from images. The CNN googlenet interprets the image and LSTM translate the image context into sentences.</p>
+							<p>Subsequent "show, attend and tell" introduces a attention vector to tell the LSTM where to look at within the CNN output. This attention vector itself is generated from fully connected neural net and is trainined together with the system. Evaluation results suggest small advantage beyond original "Show and Tell" algorithm</p>
+							<img src="img/imagecaptioning/googlresult.jpg" class="img-responsive" alt="Show and Tell Result"/>
+							<div class="col-lg-8">
+								<table class="table table-bordered table-hover table-responsive"> 
+									<tbody> 
+										<tr> 
+											<th scope="row" rowspan="2">Accuracy</th>
+											<td>Show and Tell - MSCOCO dataset: BLUE-4: 24.6, METEOR: 23.7</td>
+										</tr>
+										<tr>
+											<td>Show, Attend and Tell - MSCOCO dataset: BLUE-4: 25.0, METEOR: 23.04</td>
+										</tr>
+										<tr> 
+											<th scope="row">Architecture</th>
+											<td>
+												<ul>
+													<li>Show and Tell concatenate LSTM network after GoogleNet CNN. It directly uses CNN's output as the input to LSTM.</li>
+													<li><span>Show, Attend and Tell connect a fully connected network to the output of CNN, which generate a attention vector. The element wise product of the attention vector and CNN's output is then feed into LSTM network.</span>
+														<img src="img/imagecaptioning/showattendandtell.png" class="img-responsive" alt="Show, Attend and Tell"/></li>
+												</ul>
+											</td>
+										</tr>
+										<tr> 
+											<th scope="row">Advantage</th>
+											<td>
+												<ul>
+													<li>Higher accuracy: these are first deep learning based image captioning algorithms that achieved great performance in image captioning at scale.</li>
+												</ul>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div class="col-lg-4"></div>
+						</div>
+						<div class="col-lg-12 row">
+							<p>Show and Tell: <a href="https://github.com/jazzsaxmafia/show_and_tell.tensorflow">Github</a></p>
+							<p>Show, Attend and Tell: <a href="https://github.com/jazzsaxmafia/show_attend_and_tell.tensorflow">Github</a></p>
+						</div>
+						<hr/>
+					</div>	
 					<div id="googlenet" class="row">
 						<div class="col-lg-12 row">
 							<h1>GoogleNet Image Classifier</h1>
@@ -236,53 +376,6 @@
 						</div>
 						<hr/>
 					</div>	
-					<div id="imagetalk" class="row">
-						<div class="col-lg-12 row">
-							<h1>Image Captioning: Show, (Attend) and Tell</h1>
-							<p class="lead">Publication: <a href="https://arxiv.org/abs/1411.4555">Show and Tell: A Neural Image Caption Generator</a></p>
-							<p class="lead">Publication: <a href="https://arxiv.org/abs/1502.03044">Show, Attend and Tell: Neural Image Caption Generation with Visual Attention</a></p>
-							<p>Google's original "Show and Tell" network builds a LSTM recurrent network on top of GoogleNet Image classifier to generate captions from images. The CNN googlenet interprets the image and LSTM translate the image context into sentences.</p>
-							<p>Subsequent "show, attend and tell" introduces a attention vector to tell the LSTM where to look at within the CNN output. This attention vector itself is generated from fully connected neural net and is trainined together with the system. Evaluation results suggest small advantage beyond original "Show and Tell" algorithm</p>
-							<img src="img/imagecaptioning/googlresult.jpg" class="img-responsive" alt="Show and Tell Result"/>
-							<div class="col-lg-8">
-								<table class="table table-bordered table-hover table-responsive"> 
-									<tbody> 
-										<tr> 
-											<th scope="row" rowspan="2">Accuracy</th>
-											<td>Show and Tell - MSCOCO dataset: BLUE-4: 24.6, METEOR: 23.7</td>
-										</tr>
-										<tr>
-											<td>Show, Attend and Tell - MSCOCO dataset: BLUE-4: 25.0, METEOR: 23.04</td>
-										</tr>
-										<tr> 
-											<th scope="row">Architecture</th>
-											<td>
-												<ul>
-													<li>Show and Tell concatenate LSTM network after GoogleNet CNN. It directly uses CNN's output as the input to LSTM.</li>
-													<li><span>Show, Attend and Tell connect a fully connected network to the output of CNN, which generate a attention vector. The element wise product of the attention vector and CNN's output is then feed into LSTM network.</span>
-														<img src="img/imagecaptioning/showattendandtell.png" class="img-responsive" alt="Show, Attend and Tell"/></li>
-												</ul>
-											</td>
-										</tr>
-										<tr> 
-											<th scope="row">Advantage</th>
-											<td>
-												<ul>
-													<li>Higher accuracy: these are first deep learning based image captioning algorithms that achieved great performance in image captioning at scale.</li>
-												</ul>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-							<div class="col-lg-4"></div>
-						</div>
-						<div class="col-lg-12 row">
-							<p>Show and Tell: <a href="https://github.com/jazzsaxmafia/show_and_tell.tensorflow">Github</a></p>
-							<p>Show, Attend and Tell: <a href="https://github.com/jazzsaxmafia/show_attend_and_tell.tensorflow">Github</a></p>
-						</div>
-						<hr/>
-					</div>	
 					<div id="textrank" class="row">
 						<div class="col-lg-12 row">
 							<h1>TextRank - Article Summarization & Keyword Extraction</h1>
@@ -335,102 +428,9 @@
 						<hr/>
 						
 					</div>	
-					<div id="syntaxnet" class="row">
-						<div class="col-lg-12 row">
-							<h1>SyntaxNet: Neural Models of Syntax</h1>
-							<p class="lead">Google's Open-Source Model & Code: <a href="https://github.com/tensorflow/models/tree/master/research/syntaxnet">SyntaxNet: Neural Models of Syntax</a></p>
-							<p>Part of speech (POS) tagging aims at parsing the dependency structure of a sentence to understand which word is root, action and objectives. SyntaxNet is a Google open-sourced neural network solution achieving state-of-art accuracy in POS challenges.</p>
-							<img src="img/syntaxnet/ff_nn_schematic.png" class="img-responsive" alt="DependencyParsing"/>
-							<p>As illustrated in the above picture, the model concatenates feature embeddings, run through hidden layer, and output the softmax probability for the next optimal action to take on the sequence graph.</p>
-							<p>The mathematics in <a href="https://arxiv.org/abs/1603.06042">Globally Normalized Transition-Based Neural Networks</a> is critical in training a high accuracy syntax net.</p>
-							<p>In summary, the paper proves</p>
-							<p>
-								<ul>
-									<li>Computing global normalization loss function is strictly better (more expressive) than local normalization loss function. 
-										<ul>
-											<li>Global normalization: how likely is this sequence (of tagging), out of all possible sequences, the golden sequence?</li>
-											<li>Local normalization: how likely is this next action (tagging), out of all possible next actions, leads the current sequence to the golden sequence?</li>
-										</ul>
-									</li>
-									<li>
-										An efficient way to compute the global normalization function. Specifically, the computation can be optimized through beam searching only the golden path and early termination - perform backpropregation as soon as the system prediction deviates from the golden path, and stops there.
-									</li>
-								</ul>
-							</p>
-						</div>
-						<hr/>
-					</div>	
-					<div id="gan" class="row">
-						<div class="col-lg-12 row">
-							<h1>GAN: Generative Adversarial Network</h1>
-							<p class="lead">Publication: <a href="https://arxiv.org/abs/1406.2661">Generative Adversarial Networks</a></p>
-							<p>Generative models are useful for building AI that can self-compose images, music and other works. Building a generative model is challenging because it is hard to define what is the best output (training target), and find a working cost function.</p>
-							<p>GAN introduces a new paradigm of training a generative model, in the following way:</p>
-							<p>
-								<ul>
-									<li>
-									    Build a generative model neural network 
-									</li>
-									<li>
-										Build a discriminator network that tries to tell if its input (e.g. an image) is artificially generated or real.
-									</li>
-								</ul>
-							</p>
-							<p>In the paper, the author used fully connected layers for both networks and demonstrated good performance in generating realistic looking images.</p>
-							<p>The second network can be trained via backpropagation because we know for each image if it is generated or not. During the training of first netwrok, or generative network, we can lock the second network and use backpropagation to tell the first network to go into the direction of making the second network say it is more real than generated. Conceptually, the second network is providing advice for the first network on how to make its output more realistic and thus named as Adversarial network.</p>
-							<p>The following image demonstrated this process visually</p>
-							<img src="img/gan/gan.png" class="img-responsive" alt="GAN"/>
-							<p>
-							<ul>
-									<li>
-									    Back dot: real output
-									</li>
-									<li>
-										Grean line: generative network output
-									</li>
-									<li>
-										Blue line: discriminator network output (0.5 means it believe the work has equal probability to be real or generated)
-									</li>
-								</ul>
-							</p>
-							<p>Although as Karpathy noted on his <a href="http://cs.stanford.edu/people/karpathy/gan/">experiment</a>, "things are not quite as nice in practice".</p>
-						</div>
-						<hr/>
-					</div>
-					<div id="vae" class="row">
-						<div class="col-lg-12 row">
-							<h1>Variational Autoencoder</h1>
-							<p class="lead">Publication: <a href="https://arxiv.org/abs/1312.6114">Original VAE paper (2013)</a></p>
-							<p class="lead">Publication: <a href="https://arxiv.org/abs/1606.05579">Disentangled VAE's (DeepMind 2016)</a></p>
-							<p class="lead">Video: <a href="https://www.youtube.com/watch?v=9zKuYvjFFS8">Variational Autoencoders Walk-through</a></p>
-							<p>Variational autoencoder differs from a traditional neural network autoencoder by merging statistical modeling techniques with deep learning</p>
-							<p>Specifically, it is special in that:</p>
-							<p>
-								<ul>
-									<li>
-									    It tries to build encoded latent vector as a Gaussian probability distribution of mean and variance (different mean and variance for each encoding vector dimension).
-									</li>
-									<li>
-										The latent vector forms a continuous space, tuning latent vector continuously forms continuous output representations. With disentangled VAE, the latent vector can even minimizes their correlations, and become more orthogonal to one another. This is perhaps the <b>best property</b> a traditional autoencoder lacks.
-									</li>
-									<li>
-										During reconstruction stage, a stochastic operation (random sample from Gaussian) is performed to first generate the latent vector. This sample can be considered as a constant in the backpropagation stage
-									</li>
-									<li>
-										The cost function include similarity towards the target (same as traditional autoencoder) and a KL divergence that pushes the latent vector converge to Gausian distribution.
-									</li>
-								</ul>
-							</p>
-							<p>The following image demonstrated VAE network</p>
-							<img src="img/vae/vae.jpg" class="img-responsive" alt="GAN"/>
-							<p>Kevin provides <a href="http://kvfrans.com/variational-autoencoders-explained/">a more detailed explanation with codes</a>, coming from both deep learning and statistician perspectives.
-						</div>
-						<hr/>
-					</div>
-				</div>
 				<div class="col-md-1"></div>
 			</div>
-        
+		        </div>
 			<div class="container footer">
 				<hr/>
 
